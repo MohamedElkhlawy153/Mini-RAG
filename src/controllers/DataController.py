@@ -27,7 +27,7 @@ class DataController(BaseController):
         return True, ResponseSignal.File_Validation_Passed.value
 
 
-    def genrate_unique_file_name(self, orig_file_name: str, project_id: str):
+    def genrate_unique_filepath(self, orig_file_name: str, project_id: str):
         random_file_name = self.generate_random_string()
         project_path = ProjectController().get_project_path(project_id=project_id)
 
@@ -41,7 +41,7 @@ class DataController(BaseController):
             new_file_path = os.path.join(project_path,
             random_file_name + "_" + cleand_file_name
             )    
-        return new_file_path    
+        return new_file_path, random_file_name + "_" + cleand_file_name
 
 
     def get_clean_file_name(self, orig_file_name: str):
