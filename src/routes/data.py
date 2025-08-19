@@ -96,23 +96,7 @@ async def process_endpoint(project_id: str, process_request: ProcessRequest):
             }
         )
 
-    # Convert Document objects to serializable dictionaries
-    serializable_chunks = []
-    for chunk in file_chunks:
-        serializable_chunks.append({
-            "page_content": chunk.page_content,
-            "metadata": chunk.metadata
-        })
-    
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content={
-            "status": "success",
-            "signal": ResponseSignal.File_Chunks_Generated.value,
-            "file_chunks": serializable_chunks,
-            "file_id": file_id
-        }
-    )
+    return file_chunks
 
 
 
